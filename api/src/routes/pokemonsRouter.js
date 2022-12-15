@@ -1,5 +1,10 @@
 const express = require("express");
-const { getAllPokemons, getPokeById } = require("../controllers/index");
+const {
+  getAllPokemons,
+  getPokeById,
+  postPokemon,
+} = require("../controllers/index");
+const { Type } = require("../db");
 
 const router = express.Router();
 
@@ -27,6 +32,30 @@ router.get("/:id", async (req, res) => {
   try {
     const info = await getPokeById(id);
     if (info) res.status(200).send(info);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const { name, life, attack, defense, speed, img, types, height, weight } =
+      req.body;
+    if (!name) throw new Error(`The name field cannot be empty`);
+    let newPoke = await postPokemon(
+      name,
+      life,
+      attack,
+      defense,
+      speed,
+      img,
+      height,
+      weight,
+      types
+    );
+    let typesSearch = await Type.findAll({ where: { name: types } });
+    await newPoke.addType(typesSearch);
+    res.status(200).send(newPoke);
   } catch (error) {
     res.status(400).send(error.message);
   }
