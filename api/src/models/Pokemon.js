@@ -41,6 +41,9 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      /* types: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+      }, */
     },
     { timestamps: false }
   );

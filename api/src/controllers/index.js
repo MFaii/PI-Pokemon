@@ -1,5 +1,6 @@
 const url = "https://pokeapi.co/api/v2/pokemon";
 const axios = require("axios");
+const db = require("../db");
 const { Pokemon, Type } = require("../db");
 
 //Traigo todos los pokemons de la api y db =>
@@ -23,6 +24,8 @@ const getAllPokemons = async () => {
       attack: p.stats[1].base_stat,
       defense: p.stats[2].base_stat,
       speed: p.stats[5].base_stat,
+      weight: p.weight,
+      height: p.height,
       types: p.types.map((t) => t.type.name),
     };
   });
@@ -44,19 +47,37 @@ const getAllPokemons = async () => {
       attack: p.stats[1].base_stat,
       defense: p.stats[2].base_stat,
       speed: p.stats[5].base_stat,
+      weight: p.weight,
+      height: p.height,
       types: p.types.map((t) => t.type.name),
     };
   });
-  const dbPokes = await Pokemon.findAll({
-    attributes: ["name", "img", "inDB"],
+  let dbPokes = await Pokemon.findAll({
+    attributes: [
+      "name",
+      "life",
+      "img",
+      "inDB",
+      "speed",
+      "attack",
+      "defense",
+      "weight",
+      "height",
+    ],
     include: {
       model: Type,
       attributes: ["name"],
-      throught: {
+      through: {
         attributes: [],
       },
     },
   });
+
+  dbPokes = dbPokes.map((p) => ({
+    ...p.dataValues,
+    types: p.dataValues.types.map((t) => t.name),
+  }));
+
   const AllPokes = pokeinfo.concat(pokeinfo2, dbPokes);
   return AllPokes;
 };
