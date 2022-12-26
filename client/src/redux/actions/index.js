@@ -30,3 +30,46 @@ export function orderByName(payload) {
     payload,
   };
 }
+
+export function getPokeNames(name) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/pokemons?name=" + name);
+      return dispatch({
+        type: "GET_POKENAMES",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getPokeDetail(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/pokemons/" + id);
+      return dispatch({
+        type: "GET_DETAILS",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getTypes() {
+  return async function (dispatch) {
+    var info = await axios.get("http://localhost:3001/types", {});
+    return dispatch({ type: "GET_TYPES", payload: info.data });
+  };
+}
+
+export function postPokemon(payload) {
+  return async function (dispatch) {
+    const res = await axios.post("http://localhost:3001/pokemons", payload);
+    console.log(res);
+    return res;
+  };
+}
