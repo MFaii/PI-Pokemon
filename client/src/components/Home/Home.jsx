@@ -49,6 +49,7 @@ const Home = () => {
 
   function handleFilterCreated(e) {
     dispatch(filterByCreation(e.target.value));
+    setCurrentPage(1);
   }
 
   function handleSort(e) {
@@ -60,6 +61,11 @@ const Home = () => {
 
   return (
     <div>
+      <div>
+        <Link to="/">
+          <button>LandingPage</button>
+        </Link>
+      </div>
       <Link to="/createpokemon">Crear pokemon</Link>
       <h1>PokePage</h1>
       <button
@@ -71,8 +77,8 @@ const Home = () => {
       </button>
       <div>
         <select onChange={(e) => handleSort(e)}>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
         </select>
         <select onChange={(e) => handleFilterTypes(e)}>
           <option value="All">All</option>

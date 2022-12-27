@@ -198,7 +198,8 @@ const PokemonCreate = () => {
             !input.defense ||
             !input.height ||
             !input.weight ||
-            !input.speed
+            !input.speed ||
+            !input.types.length
           }
         >
           Create Pokemon

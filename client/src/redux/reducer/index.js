@@ -79,6 +79,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         types: action.payload,
       };
+    case "Unmount":
+      return {
+        ...state,
+        detail: action.payload,
+      };
     default:
       return state;
   }

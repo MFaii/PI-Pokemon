@@ -69,7 +69,12 @@ export function getTypes() {
 export function postPokemon(payload) {
   return async function (dispatch) {
     const res = await axios.post("http://localhost:3001/pokemons", payload);
-    console.log(res);
     return res;
+  };
+}
+
+export function Unmount() {
+  return async function (dispatch) {
+    return dispatch({ type: "Unmount", payload: [{}] });
   };
 }

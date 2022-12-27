@@ -53,17 +53,6 @@ const getAllPokemons = async () => {
     };
   });
   let dbPokes = await Pokemon.findAll({
-    attributes: [
-      "name",
-      "life",
-      "img",
-      "inDB",
-      "speed",
-      "attack",
-      "defense",
-      "weight",
-      "height",
-    ],
     include: {
       model: Type,
       attributes: ["name"],
