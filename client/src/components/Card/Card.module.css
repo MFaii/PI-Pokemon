@@ -1,0 +1,12 @@
+.cardContainer {
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: #233142;
+  min-width: 200px;
+  opacity: 100%;
+  color: white;
+  text-shadow: #233142;
+  min-height: 500px;
+  margin: 5px 20px;
+}

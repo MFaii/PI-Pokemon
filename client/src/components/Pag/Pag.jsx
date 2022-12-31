@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Pag.module.css";
 
 const Pag = ({ pokemonsPerPage, allPokemons, paginado }) => {
   const pageNumbers = [];
@@ -8,12 +9,12 @@ const Pag = ({ pokemonsPerPage, allPokemons, paginado }) => {
   }
 
   return (
-    <nav>
-      <ul className="paginado">
+    <nav className={styles.paginacion}>
+      <ul>
         {pageNumbers &&
           pageNumbers.map((number) => (
-            <li className="number" key={number}>
-              <a onClick={() => paginado(number)}>{number}</a>;
+            <li key={number}>
+              <a onClick={() => paginado(number)}>{number}</a>
             </li>
           ))}
       </ul>

@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import style from "./LandingPage.module.css";
 
 const LandingPage = () => {
   return (
-    <div>
-      <h1>Bienvenidos a mi pokeappi</h1>
+    <div className={style.landingContainer}>
+      <h1>Welcome to my Pokemon App</h1>
       <Link to="/home">
-        <button>Ingresar</button>
+        <button className={style.button}>Get into</button>
       </Link>
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokeNames } from "../../redux/actions";
+import styles from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,6 @@ const SearchBar = () => {
   const handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
-    console.log(name);
   };
 
   const handleSubmit = (e) => {
@@ -20,16 +20,23 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-      <input
-        value={name}
-        type="text"
-        placeholder="Search"
-        onChange={(e) => handleInputChange(e)}
-      />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
-        Search
-      </button>
+    <div className={styles.wrap}>
+      <div className={styles.search}>
+        <input
+          value={name}
+          type="text"
+          placeholder="Search"
+          onChange={(e) => handleInputChange(e)}
+          className={styles.searchTerm}
+        />
+        <button
+          type="submit"
+          onClick={(e) => handleSubmit(e)}
+          className={styles.searchButton}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 };

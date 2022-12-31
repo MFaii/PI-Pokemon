@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Pag from "../Pag/Pag";
 import SearchBar from "../SearchBar/SearchBar";
+import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -60,63 +61,76 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className={styles.maxContainer}>
       <div>
         <Link to="/">
-          <button>LandingPage</button>
+          <button className={styles.landingButton}>Landing Page</button>
         </Link>
+
+        <div>
+          <Link to="/createpokemon">
+            <button className={styles.landingButton}>Create pokemon</button>
+          </Link>
+
+          <button
+            onClick={(e) => {
+              handleClick(e);
+            }}
+            className={styles.landingButton}
+          >
+            Reload Pokemons
+          </button>
+        </div>
       </div>
-      <Link to="/createpokemon">Crear pokemon</Link>
-      <h1>PokePage</h1>
-      <button
-        onClick={(e) => {
-          handleClick(e);
-        }}
-      >
-        Reload Pokemons
-      </button>
+
       <div>
-        <select onChange={(e) => handleSort(e)}>
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-        </select>
-        <select onChange={(e) => handleFilterTypes(e)}>
-          <option value="All">All</option>
-          {types.map((t) => (
-            <option value={t.name}>{t.name}</option>
-          ))}
-        </select>
-        <select onChange={(e) => handleFilterCreated(e)}>
-          <option value="All">All</option>
-          <option value="inDB">inDb</option>
-          <option value="inApi">inApi</option>
-        </select>
-        <Pag
-          pokemonsPerPage={pokemonsPerPage}
-          allPokemons={allPokemons.length}
-          paginado={paginado}
-        />
-        <SearchBar />
-        {currentPokemons?.map((p) => {
-          return (
-            <div>
-              <Link to={"/home/" + p.id}>
-                <Card
-                  name={p.name}
-                  img={
-                    p.img ? (
-                      p.img
-                    ) : (
-                      <img src="https://mediamaster.vandal.net/m/10-2021/2021105724573_1.jpg" />
-                    )
-                  }
-                  types={p.types}
-                  key={p.id}
-                />
-              </Link>
-            </div>
-          );
-        })}
+        <div className={styles.divSelect}>
+          <div className={styles.containerSelect}>
+            <select onChange={(e) => handleSort(e)}>
+              <option value="asc">A-Z</option>
+              <option value="desc">Z-A</option>
+            </select>
+            <select onChange={(e) => handleFilterTypes(e)}>
+              <option value="All">All</option>
+              {types.map((t) => (
+                <option value={t.name}>{t.name}</option>
+              ))}
+            </select>
+            <select onChange={(e) => handleFilterCreated(e)}>
+              <option value="All">All</option>
+              <option value="inDB">inDb</option>
+              <option value="inApi">inApi</option>
+            </select>
+          </div>
+          <SearchBar />
+          <Pag
+            pokemonsPerPage={pokemonsPerPage}
+            allPokemons={allPokemons.length}
+            paginado={paginado}
+          />
+        </div>
+        <div className={styles.containerCards1}>
+          {currentPokemons?.map((p) => {
+            return (
+              <div className={styles.containerCards}>
+                <Link to={"/home/" + p.id} style={{ textDecoration: "none" }}>
+                  <Card
+                    name={p.name}
+                    img={
+                      p.img ? (
+                        p.img
+                      ) : (
+                        <img src="https://mediamaster.vandal.net/m/10-2021/2021105724573_1.jpg" />
+                      )
+                    }
+                    types={p.types}
+                    key={p.id}
+                  />
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

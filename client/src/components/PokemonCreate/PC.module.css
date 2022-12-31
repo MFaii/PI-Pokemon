@@ -1,0 +1,40 @@
+.container {
+  background-image: url("../../imgs/fondo\ noche.png");
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container2 {
+  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  overflow: auto;
+  max-height: 500px;
+}
+
+.button {
+  color: #0099cc;
+  background: transparent;
+  border: 2px solid #0099cc;
+  border-radius: 6px;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #008cba;
+  color: white;
+  cursor: pointer;
+}
