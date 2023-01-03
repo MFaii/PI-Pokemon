@@ -42,10 +42,12 @@ const Home = () => {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getPokemons());
+    setCurrentPage(1);
   }
 
   function handleFilterTypes(e) {
     dispatch(filterPokemonsByType(e.target.value));
+    setCurrentPage(1);
   }
 
   function handleFilterCreated(e) {
@@ -120,7 +122,7 @@ const Home = () => {
                       p.img ? (
                         p.img
                       ) : (
-                        <img src="https://mediamaster.vandal.net/m/10-2021/2021105724573_1.jpg" />
+                        <img src="https://e7.pngegg.com/pngimages/585/436/png-clipart-pokemon-pikachu-illustration-icon-pikachu-background-mammal-food.png" />
                       )
                     }
                     types={p.types}
