@@ -60,6 +60,32 @@ function rootReducer(state = initialState, action) {
         ...state,
         pokemons: sortedArr,
       };
+    case "FILTER_BY_ATTACK":
+      let arr =
+        action.payload === "asce"
+          ? state.allpokemons.sort(function (a, b) {
+              if (a.attack > b.attack) {
+                return 1;
+              }
+              if (b.attack > a.attack) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.allpokemons.sort(function (a, b) {
+              if (a.attack > b.attack) {
+                return -1;
+              }
+              if (b.attack > a.attack) {
+                return 1;
+              }
+              return 0;
+            });
+      console.log(arr);
+      return {
+        ...state,
+        pokemons: [...arr],
+      };
     case "GET_POKENAMES":
       return {
         ...state,

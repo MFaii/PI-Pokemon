@@ -31,6 +31,13 @@ export function orderByName(payload) {
   };
 }
 
+export function orderByAttack(payload) {
+  return {
+    type: "FILTER_BY_ATTACK",
+    payload,
+  };
+}
+
 export function getPokeNames(name) {
   return async function (dispatch) {
     try {

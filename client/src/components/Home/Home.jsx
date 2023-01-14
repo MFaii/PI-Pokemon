@@ -6,6 +6,7 @@ import {
   filterByCreation,
   orderByName,
   getTypes,
+  orderByAttack,
 } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
@@ -62,6 +63,11 @@ const Home = () => {
     setOrden(`Ordenado ${e.target.value}`);
   }
 
+  function handleFilterAttack(e) {
+    dispatch(orderByAttack(e.target.value));
+    setCurrentPage(1);
+  }
+
   return (
     <div className={styles.maxContainer}>
       <div>
@@ -89,19 +95,35 @@ const Home = () => {
         <div className={styles.divSelect}>
           <div className={styles.containerSelect}>
             <select onChange={(e) => handleSort(e)}>
+              <option disabled selected>
+                Alphabetical Order
+              </option>
               <option value="asc">A-Z</option>
               <option value="desc">Z-A</option>
             </select>
             <select onChange={(e) => handleFilterTypes(e)}>
+              <option disabled selected>
+                Filter by Type
+              </option>
               <option value="All">All</option>
               {types.map((t) => (
                 <option value={t.name}>{t.name}</option>
               ))}
             </select>
             <select onChange={(e) => handleFilterCreated(e)}>
+              <option disabled selected>
+                Filter by Creation
+              </option>
               <option value="All">All</option>
               <option value="inDB">inDb</option>
               <option value="inApi">inApi</option>
+            </select>
+            <select onChange={(e) => handleFilterAttack(e)}>
+              <option disabled selected>
+                Filter by Attack
+              </option>
+              <option value="asce">Attack Asc</option>
+              <option value="A.desc">Attack Desc</option>
             </select>
           </div>
           <SearchBar />

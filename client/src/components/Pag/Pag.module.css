@@ -22,4 +22,5 @@
 
 .paginacion ul li a:hover {
   background: #037e8c;
+  cursor: pointer;
 }

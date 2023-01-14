@@ -7,6 +7,12 @@
   opacity: 100%;
   color: white;
   text-shadow: #233142;
-  min-height: 500px;
+  min-height: 443px;
   margin: 5px 20px;
+  background-color: #233142;
+  opacity: 40%;
+}
+
+.cardContainer:hover {
+  opacity: 100%;
 }
